@@ -2,7 +2,7 @@
 <head>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>Relentless Results Tracker</title>
+<title>Relentless Education — Results Tracker</title>
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif;background:#111;color:#f0ede8;min-height:100vh;overflow-x:hidden}
@@ -64,9 +64,16 @@ tbody td{padding:9px 12px;border-bottom:1px solid #1e1e20;color:#c0bdb8;vertical
 tfoot td{padding:9px 12px;border-top:1px solid #2e2e32;background:#141416;color:#c0bdb8;font-size:12px}
 tbody tr:last-child td{border-bottom:none}
 tbody tr:hover td{background:rgba(255,255,255,0.02)}
-.ti{background:transparent;border:none;outline:none;color:#fff;font-family:inherit;font-size:13px;font-weight:600;width:100%;min-width:55px}
-.ti:focus{background:rgba(245,229,0,0.06);border-radius:4px;padding:2px 4px}
+.ti{background:transparent;border:none;outline:none;color:#e8e6e1;font-family:inherit;font-size:13px;font-weight:600;width:100%;min-width:55px;caret-color:#F5E500}
+.ti::placeholder{color:#555552}
+.ti:focus{background:rgba(245,229,0,0.08);border-radius:4px;padding:2px 4px;color:#ffffff}
 .ti[type=number]::-webkit-inner-spin-button{-webkit-appearance:none}
+/* Ensure table cells have dark background so white text is always visible */
+tbody td{background:#111!important}
+tbody tr:hover td{background:#161618!important}
+
+.pr{background:rgba(77,180,77,0.08)!important}
+.pr td{background:rgba(77,180,77,0.08)!important;color:#6dcf6d!important}
 .cbw{display:flex;align-items:center;gap:8px;cursor:pointer}
 .cbb{width:16px;height:16px;border:1px solid #383838;border-radius:3px;background:#141416;display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:background 0.15s}
 .cbb.on{background:#6dcf6d;border-color:#6dcf6d}
@@ -88,17 +95,19 @@ tbody tr:hover td{background:rgba(255,255,255,0.02)}
 .ibox{background:#1a1900;border:1px solid #2e2b00;border-left:3px solid #F5E500;border-radius:8px;padding:12px 16px;margin-bottom:16px}
 .ibox p{font-size:13px;color:#c0bdb8;line-height:1.6}
 .ibox strong{color:#F5E500;font-weight:700}
-.pr{background:rgba(77,180,77,0.06)!important}
-.pr td{color:#6dcf6d!important}
+
 hr.dv{border:none;border-top:1px solid #2e2e32;margin:20px 0}
 </style>
 </head>
 <body>
 
 <nav class="nav">
-  <div class="nav-brand">
-    <div class="brand-icon">RE</div>
-    <span class="brand-name">Relentless</span>
+  <div class="nav-brand" style="gap:12px">
+    <div class="brand-icon" style="width:38px;height:38px;border-radius:8px;font-size:12px">RE</div>
+    <div style="display:flex;flex-direction:column;gap:1px">
+      <span class="brand-name" style="font-size:14px;letter-spacing:-0.01em">Relentless Education</span>
+      <span style="font-size:9px;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;color:#555552">Results Tracker</span>
+    </div>
   </div>
   <div class="nav-tabs">
     <span class="nav-label">Setup</span>
@@ -495,7 +504,7 @@ function rLeads(){
         <tr>${['Out','Org','PPC','Out','Org','PPC','Out','Org','PPC','Out','Org','PPC','Out','Org','PPC','Out','Org','PPC'].map(s=>`<th style="font-size:9px">${s}</th>`).join('')}</tr>
       </thead>
       <tbody>
-        ${DAYS.map((day,di)=>`<tr><td style="font-size:11px;font-weight:600;color:#888885;white-space:nowrap">${day.slice(0,3)}</td>${LFIELDS.map(f=>`<td><input class="ti" type="number" value="${w[di][f]||''}" placeholder="" oninput="sLV(${mi},${wi},${di},'${f}',this.value)" min="0"/></td>`).join('')}</tr>`).join('')}
+        ${DAYS.map((day,di)=>`<tr><td style="font-size:11px;font-weight:600;color:#888885;white-space:nowrap">${day.slice(0,3)}</td>${LFIELDS.map(f=>`<td style="background:#141416"><input class="ti" type="number" value="${w[di][f]||''}" placeholder="0" oninput="sLV(${mi},${wi},${di},'${f}',this.value)" min="0"/></td>`).join('')}</tr>`).join('')}
       </tbody>
       <tfoot><tr class="wtr"><td style="font-size:10px;font-weight:700;color:#F5E500;letter-spacing:0.05em">TOTALS</td>${LFIELDS.map((_,i)=>`<td id="wt-${mi}-${wi}-${i}">0</td>`).join('')}</tr></tfoot>
     </table></div>`;
@@ -667,4 +676,5 @@ init();
 </script>
 </body>
 </html>
+
 
